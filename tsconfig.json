@@ -17,5 +17,5 @@
     "app/_layout.tsx",
     "images.d.ts",
     "types/**/*.d.ts"
-, "app/(tabs)/index.jsx"  ]
+, "app/(tabs)/index.tsx"  ]
 }
