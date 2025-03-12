@@ -17,7 +17,6 @@ const TabIcon: React.FC<TabIconProps> = ({ focused, icon }) => {
           { tintColor: focused ? '#007AFF' : '#8E8E93' },
         ]}
       />
-     
     </View>
   );
 };

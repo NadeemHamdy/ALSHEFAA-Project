@@ -13,6 +13,10 @@ export default function NotFoundScreen() {
         <Link href="/" style={styles.link}>
           <ThemedText type="link">Go to home screen!</ThemedText>
         </Link>
+        <Link href="/product/CompleteBloodCount"   style={styles.link}>
+          <ThemedText type="link">Go to CompleteBloodCount screen!</ThemedText>
+        </Link>
+        <Stack.Screen />
       </ThemedView>
     </>
   );

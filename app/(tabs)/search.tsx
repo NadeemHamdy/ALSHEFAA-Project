@@ -1,11 +1,10 @@
 import { StyleSheet, Text, View ,SafeAreaView} from 'react-native'
 import React from 'react'
+import SimpleScrollView from '@/components/SimpleScrollView'
 
 const Search = () => {
   return (
-    <SafeAreaView>
-      <Text>test</Text>
-    </SafeAreaView>
+   <SimpleScrollView></SimpleScrollView>
   )
 }
 

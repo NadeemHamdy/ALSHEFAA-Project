@@ -24,14 +24,14 @@ export default function TabLayout() {
         alignItems: "center",
       },
       tabBarStyle: {
-        backgroundColor: "#0F0D23",
+        backgroundColor:'rgb(252, 226, 250)',
         justifyContent: "center",
         alignItems: "center",
         height: "9%",
         position: "absolute",
         overflow: "hidden",
         borderWidth: 1,
-        borderColor: "#0F0D23",
+        borderColor: "#000",
         
      
       },
@@ -50,7 +50,7 @@ export default function TabLayout() {
         name="search"
         options={{
           title: "Search",
-          // headerShown: false,
+          headerShown: false,
           tabBarIcon: ({ focused }) => (
             <TabIcon focused={focused} icon={icons.search} />
           ),
@@ -69,7 +69,7 @@ export default function TabLayout() {
         options={{
           title: 'Profile',
           tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} icon={icons.person} />
+            <TabIcon focused={focused} icon={icons.person } />
           ),
         }}
       />
