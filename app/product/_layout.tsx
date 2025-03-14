@@ -1,11 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { Link, Stack } from 'expo-router';
+import { useLocalSearchParams } from "expo-router";
 const ProductLayOut = () => {
+  const { name } = useLocalSearchParams();
+  
   return (
    <Stack>
-      <Stack.Screen name="CompleteBloodCount" options={{ title:"CompleteBlood",  }} />
-      <Stack.Screen name="LipidPanel" options={{ title:"Lipid Panel",  }} />
+      <Stack.Screen name="CompleteBloodCount" options={{ title:name,  }} />
+      <Stack.Screen name="LipidPanel" options={{ title:name,  }} />
       <Stack.Screen name="Urinalysis" options={{ title:"Urinalysis",  }} />
       <Stack.Screen name="BMP" options={{ title:"Basic Metabolic Panel",  }} />
       <Stack.Screen name="TFT" options={{ title:"Thyroid Function Test",  }} />

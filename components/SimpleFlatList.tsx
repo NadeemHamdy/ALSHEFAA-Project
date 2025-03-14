@@ -23,8 +23,11 @@ const DATA = [
     { text: "grape", icon: mango },
     { text: "watermelon", icon: lemon },    
 ];
-
-const Item = ({text}) => (
+interface Props {
+  text: string;
+  iconSrc: any; 
+}
+const Item = ({text}: Props) => (
   <View style={styles.item}>
     <Text style={styles.title}>{text}</Text>
   </View>

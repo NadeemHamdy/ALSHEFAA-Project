@@ -5,6 +5,7 @@ import {images} from '@/constants/images'
 import SearchBar from '@/components/SearchBar'
 import {useState, useEffect} from 'react'
 const Search = () => {
+ 
 const Items = [
     {
       name   : "Complete Blood Count (CBC)",
@@ -45,12 +46,14 @@ const Items = [
         name: "International Normalized Ratio (INR)",
         description: "A lab test that determines how long it takes for blood to clot. Price: 600. Fasting for 6-8 hours is preferred, and the test should be done in the morning.",
         icon: images.inr,
+        price: 80,
         http : "/product/INR",
       },
       {
         name: "Kidney Function Test (KFT)",
         description: "Kidney function test is useful for urine screening to detect blood and protein. KFT helps assess creatinine buildup in the bloodstream, as elevated levels may indicate kidney problems. Helps doctors diagnose factors associated with unexplained high blood pressure. Helps the test screen for underlying causes of obesity. Price: 300. Fasting for 6 hours is required.",
         icon: images.rft,
+        price: 80,
         http : "/product/KFT",
       },
       ,
@@ -58,7 +61,8 @@ const Items = [
 name: "Liver Function  (LFTs)",
 description: "Liver function tests are blood tests used to help find the cause of symptoms, monitor liver disease, or assess liver damage. Tests measure levels of certain enzymes and proteins in the blood. Some tests measure how well the liver performs its normal functions of producing protein and clearing bilirubin, a blood waste product. Price: 250. Fasting for 8-12 hours is required.",
 icon: images.lft,
-http : "/product/LFT",
+price: 80,
+http : "/product/LFT" ,
 },
   ];
   const [searchQuery, setSearchQuery] = useState("");
@@ -69,11 +73,7 @@ http : "/product/LFT",
     setSearchQuery(text);
   };
 
-  // Debounced search effect
   
-
-   
-
   return (
     <SafeAreaView  style={styles.container}>
     <ScrollView >

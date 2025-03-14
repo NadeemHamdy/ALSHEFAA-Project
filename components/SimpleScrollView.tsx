@@ -2,7 +2,10 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, ScrollView, SafeAreaView } from "react-native";
 import Item from "./Item";
 import {images} from "../constants/images";
-export default function SimpleScrollView( {items}) {
+interface Props {
+  items: Array<{ name: string, description: string, icon: any, http: string, price: number }>;
+}
+export default function SimpleScrollView( {items} : Props ) {
   
 //   const [arrOfObjects, setArrOfObjects] = useState([]);
 //   useEffect(() => {
@@ -28,7 +31,7 @@ return (
 
     <ScrollView contentContainerStyle={styles.items}>
       {items.map((e) => (
-        <Item  text={e.name} iconSrc={e.icon} description={e.description} key={e.http} http ={e.http} />
+        <Item  name={e.name} iconSrc={e.icon} description={e.description} key={e.http} http ={e.http} price={e.price}  />
       ))}
     </ScrollView>
     {/* <ScrollView contentContainerStyle={styles.items}>
@@ -43,13 +46,13 @@ return (
 }
 
 const styles = StyleSheet.create({
-// container: {
-//   flex: 1,
-//   backgroundColor: "#fff",
-//   alignItems: "stretch",
-//   justifyContent: "flex-start",
-//   marginTop: StatusBar.currentHeight || 0,
-// },
+container: {
+  flex: 1,
+  backgroundColor: "#fff",
+  alignItems: "stretch",
+  justifyContent: "flex-start",
+  // marginTop: StatusBar.currentHeight || 0,
+},
 
 tal: {
 

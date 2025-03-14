@@ -2,8 +2,10 @@ import {Image ,StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { images } from '@/constants/images';
+import { useLocalSearchParams } from "expo-router";
 
 const CompleteBloodCount = () => {
+  const { name ,price } = useLocalSearchParams();
   return (
    <ParallaxScrollView
         headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
@@ -13,6 +15,7 @@ const CompleteBloodCount = () => {
             style={styles.reactLogo}
           />
         }>
+        
        
       </ParallaxScrollView>
     );
