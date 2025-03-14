@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
-export default function Item({ iconSrc, text, description }) {
+export default function Item({ iconSrc, text, description,http }) {
   const router = useRouter();
   return (
     // <View style={styles.item}>
-      <TouchableOpacity onPress={() => router.push("/product/CompleteBloodCount") }style={styles.item}>
+      <TouchableOpacity onPress={() => router.push(http) }style={styles.item}>
         <Image source={iconSrc} style={styles.image} />
         <Text style={styles.title}>{text}</Text>
       </TouchableOpacity>
