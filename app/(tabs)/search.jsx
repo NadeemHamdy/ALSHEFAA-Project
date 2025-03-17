@@ -12,7 +12,7 @@ const Items = [
       description: "Measures the number and types of cells in your blood.",
       price: 50,
       icon:  images.cpc,
-      http : "/product/CompleteBloodCount",
+      http : "/product/Products",
     },
     {
       name: "Lipid Panel",
@@ -69,14 +69,14 @@ http : "/product/LFT" ,
 
   
 
-  const handleSearch = (text: string) => {
+  const handleSearch = (text ) => {
     setSearchQuery(text);
   };
 
   
   return (
     <SafeAreaView  style={styles.container}>
-    <ScrollView >
+   
    <View style={styles.SearchBar}>
    <SearchBar placeholder=" Search for a Test"
       value={searchQuery}
@@ -84,7 +84,7 @@ http : "/product/LFT" ,
       onPress={() => console.log("Search button pressed!")} />
       </View>
       <SimpleScrollView items={Items}></SimpleScrollView>
-      </ScrollView>
+     
       </SafeAreaView>
   )
 }

@@ -4,10 +4,12 @@ export default function Item({ iconSrc, name, description,http,price }: { iconSr
   const router = useRouter();
   const handlePress =  () => {
     router.push({
-      pathname: "/product/CompleteBloodCount", 
+      pathname: "/product/Products", 
       params: {
         name:name , 
-        price: price, 
+        price: price,
+        description: description,
+        image: iconSrc,  
       },
     });
   };

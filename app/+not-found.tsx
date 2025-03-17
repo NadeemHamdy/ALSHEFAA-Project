@@ -13,14 +13,8 @@ export default function NotFoundScreen() {
         <Link href="/" style={styles.link}>
           <ThemedText type="link">Go to home screen!</ThemedText>
         </Link>
-        <Link href="/product/CompleteBloodCount"   style={styles.link}> </Link>
-        <Link href="/product/LipidPanel"   style={styles.link}></Link>
-        <Link href="/product/Urinalysis"   style={styles.link}></Link>
-        <Link href="/product/TFT"   style={styles.link}></Link>
-        <Link href="/product/INR"   style={styles.link}></Link>
-        <Link href="/product/BMP"   style={styles.link}></Link>
-        <Link href="/product/KFT"   style={styles.link}></Link>
-        <Link href="/product/LFT"   style={styles.link}></Link>
+        <Link href="/product/Products"   style={styles.link}> </Link>
+       
 
 
           <ThemedText type="link">Go to CompleteBloodCount screen!</ThemedText>

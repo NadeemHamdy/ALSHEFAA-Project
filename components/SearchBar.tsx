@@ -36,7 +36,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgb(252, 226, 250)',
     borderRadius: 999,
     paddingHorizontal: 20,
-    paddingVertical: 16,
+    paddingVertical: 10,
+    marginTop: 25,
+
   },
  
     text: {
