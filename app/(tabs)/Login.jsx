@@ -5,7 +5,7 @@ export default function Login() {
   return (
     <View style={styles.container}>
     
-      <Image source={require("../assets/images/images.jpeg")} style={styles.image} />
+      <Image source={require("../Assets/images/images.jpeg")} style={styles.image} />
       <Text style={styles.title}>Open sign up</Text>
       <StatusBar style="auto" />
 
@@ -27,9 +27,10 @@ const styles = StyleSheet.create({
   },
   image: {
     width: 400, 
-    height: 500,
+    height: 300,
     marginBottom: 20,
     marginTop: 500, 
+    alignItems: "center",
     
   },
   title: {

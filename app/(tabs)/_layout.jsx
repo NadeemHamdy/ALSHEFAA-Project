@@ -62,6 +62,17 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
         }}
       />
+
+
+<Tabs.Screen
+        name="Login"
+        options={{
+          title: 'Login',
+          tabBarIcon: ({ focused }) => (
+            <TabIcon focused={focused} icon={icons.home} />
+          ),
+        }}
+      />
      
        <Tabs.Screen
         name="profile"
