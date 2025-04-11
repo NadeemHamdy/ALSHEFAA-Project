@@ -6,20 +6,20 @@ import {  createUserWithEmailAndPassword } from "firebase/auth";
 import auth from '../firebase';
 import {useState} from 'react';
 export default function Register() {
-  const [Email,setEmail]=useState('')//وده عشان لما زاراالالتيكست يتغير اعرف اغيره
+  const [Email,setEmail]=useState('')
   const [Password,setPasword]=useState('')
   const handleRegister=()=>{
     createUserWithEmailAndPassword(auth, Email, Password)
   .then((userCredential) => {
-    // Signed up 
+    
     console.log("done")
     const user = userCredential.user;
-    // ...
+    
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
-    // ..
+    
     console.log(errorMessage)
   });
 
