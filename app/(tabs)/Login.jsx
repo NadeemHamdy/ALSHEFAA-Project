@@ -23,14 +23,14 @@ export default function Login() {
   return (
     <View style={styles.container}>
     
-      <Image source={require("../Assets/images/images.jpeg")} style={styles.image} />
-      <Text style={styles.title}>Open sign up</Text>
+      //<Image source={require("../Assets/images/images.jpeg")} style={styles.image} />
+      <Text style={styles.title}>log in to Alshefaa</Text>
       <StatusBar style="auto" />
 
       <TextInput style={styles.input} placeholder="Email" value={Email} onChangeText={setEmail}/>
       <TextInput style={styles.input} placeholder="Password"value={Password} onChangeText={setPasword} secureTextEntry  />
 
-      <Button title="Sign in"onPress={handleLogin} />
+      <Button title="log in"onPress={handleLogin} />
     </View>
   );
 }
@@ -38,24 +38,25 @@ export default function Login() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#123",
+    backgroundColor: "#1234",
     alignItems: "center",
     justifyContent: "center",
-    padding: 20,
+    paddingHorizontal: 25,
   },
   image: {
-    width: 400, 
-    height: 300,
-    marginBottom: 20,
-    marginTop: 500, 
+    width: 200, 
+    height: 120,
+    //marginBottom: 0,
+    // margintop:200,
     alignItems: "center",
     
   },
   title: {
     fontSize: 20,
-    color: "blue",
+    color: "#1234567",
     fontWeight: "bold",
-    marginBottom: 10,
+    marginBottom: 5,
+  
   },
   label: {
     alignSelf: "flex-start",
@@ -70,6 +71,6 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     backgroundColor: "#fff",
-    marginBottom: 15,
+    marginBottom: 10,
   },
 });

@@ -28,7 +28,7 @@ export default function Register() {
     <ScrollView contentContainerStyle={styles.container}>
     
       
-      <Text style={styles.title}>Register</Text>
+      <Text style={styles.title}>Create a new account</Text>
       <StatusBar style="auto" />
 
      
@@ -37,7 +37,7 @@ export default function Register() {
       <TextInput style={styles.input} placeholder="Password" value={Password} onChangeText={setPasword} secureTextEntry />
 
 
-      <Button title="Register" onPress={handleRegister} />
+      <Button title="Sign UP" onPress={handleRegister} />
     </ScrollView>
   );
 }
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   
   title: {
     fontSize: 24,
-    color: "blue",
+    color: "312",
     fontWeight: "bold",
     marginBottom: 20,
     textAlign: "center",
