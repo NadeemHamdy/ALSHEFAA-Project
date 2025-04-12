@@ -19,7 +19,7 @@ const SearchBar = ({ placeholder, value, onChangeText, onPress }) => {
         style={styles.text}
         placeholderTextColor="black"
       />
-       <Pressable 
+       {/* <Pressable 
                      onPress={() => {
                       onPress
                      }}
@@ -43,7 +43,7 @@ const SearchBar = ({ placeholder, value, onChangeText, onPress }) => {
                      
                      )}
 
-                   </Pressable> 
+                   </Pressable>  */}
     </View>
   );
 };

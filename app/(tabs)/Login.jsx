@@ -4,25 +4,83 @@ import auth from '../firebase';
 import {useState} from 'react';
 import {  signInWithEmailAndPassword } from "firebase/auth";
 import {Link } from "expo-router";
+import { useRouter } from "expo-router";
+
+
+  
 
 export default function Login() {
-  
+
+  const router = useRouter();
   const [Email,setEmail]=useState('')
     const [Password,setPasword]=useState('')
+    const [login,setLogin]=useState(false)
+
+   
+      const handlePress =  (login) => {
+        router.push({
+          pathname: "/",
+          params: { isLogin : login },
+        });
+        
+      };
+
     const handleLogin=()=>{
       signInWithEmailAndPassword(auth, Email, Password)
       .then((userCredential) => {
        console.log("done");
         const user = userCredential.user;
-        // ...
+        setLogin(true)
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorMessage);
+        alert("the email or password is incorrect")
       });
       }
      
+      if(login){
+        handlePress(login)
+        return(
+          
+          <View style={styles.container2}>
+           
+          <Text style={styles.title}>Welcome back</Text>
+          <Link href="/" style={{  marginTop: 20, }}>
+        <Text style={styles.label}>Go to Home</Text>
+        
+      </Link>
+
+      <Pressable 
+               onPress={() => {
+                setLogin(false)
+                  
+               }}
+               style={({ pressed }) => [
+                 {
+                   backgroundColor: "rgb(33, 150, 243)",
+                   opacity: pressed ? 0.5 : 1,
+                   borderRadius: 8,
+                   padding: 10,
+                
+                   alignItems: "center",
+                   justifyContent: "center",
+                   alignContent: "center",
+
+                 },
+                 styles.Button,
+               ]}
+             >
+               {({ pressed }) => (
+                 <Text style={styles.text}>{pressed ? "Pressed!" : "Logout"}</Text>
+               )}
+             </Pressable>
+          </View>
+        )}
+
+
+
   return (
 
      <View style={styles.container2}>
@@ -62,6 +120,7 @@ export default function Login() {
       </Link>
       </View>
       </View>
+      
    
   );
 }

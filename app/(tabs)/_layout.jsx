@@ -8,10 +8,17 @@ import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { icons } from '@/constants/icons';
 import TabIcon from '@/components/ui/TabIcon';
+import { useLocalSearchParams } from "expo-router";
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
 
+
+  const colorScheme = useColorScheme();
+const { isLogin } = useLocalSearchParams();
+const log = ()=> {
+return isLogin ? "profile" : "Login"
+}
   return (
+
     <Tabs
     screenOptions={{
       // tabBarShowLabel: false,
@@ -67,7 +74,7 @@ export default function TabLayout() {
 <Tabs.Screen
         name="Login"
         options={{
-          title: 'Login',
+          title: log(),
           tabBarIcon: ({ focused }) => (
             <TabIcon focused={focused} icon={icons.login} />
           ),

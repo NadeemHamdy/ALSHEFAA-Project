@@ -6,7 +6,7 @@ import { useLocalSearchParams } from "expo-router";
 import { ThemedText } from '@/components/ThemedText';
 import PressableVsButton from '@/components/PressableVsButton';
 const Products = () => {
-  const  { name ,price,  description,image   } = useLocalSearchParams();
+  const  { name ,price,  description,image ,isLogin  } = useLocalSearchParams();
   
   return (
    <ParallaxScrollView
@@ -22,7 +22,9 @@ const Products = () => {
         <Text style ={styles.priceContainer}>Price : {price} </Text>
        <Pressable 
                onPress={() => {
-                 alert("title + message");
+                 if(isLogin){
+                   alert("you are logged in")
+                 }
                }}
                style={({ pressed }) => [
                  {
