@@ -65,6 +65,7 @@ price: 80,
 http : "/product/LFT" ,
 },
   ];
+  const [sea, setSea] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
 
   
@@ -72,7 +73,15 @@ http : "/product/LFT" ,
   const handleSearch = (text ) => {
     setSearchQuery(text);
   };
-
+  const handle = () => {
+   setSea({
+      name: searchQuery,
+      description: "Measures the number and types of cells in your blood.",
+      price: 50,
+      icon:  images.cpc,
+      http : "/product/Products",
+    })
+  };
   
   return (
     <SafeAreaView  style={styles.container}>
@@ -81,9 +90,10 @@ http : "/product/LFT" ,
    <SearchBar placeholder=" Search for a Test"
       value={searchQuery}
       onChangeText={handleSearch}
-      onPress={() => console.log("Search button pressed!")} />
+      onPress={handle} />
       </View>
       <SimpleScrollView items={Items}></SimpleScrollView>
+      {/* <SimpleScrollView items={sea}></SimpleScrollView> */}
      
       </SafeAreaView>
   )

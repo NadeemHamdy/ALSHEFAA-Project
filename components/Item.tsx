@@ -1,17 +1,16 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
+import {useState, useEffect} from 'react'
 export default function Item({ iconSrc, name, description,http,price }: { iconSrc: any; name: string; description: string, http: any ,price: number,}) {
-  const router = useRouter();
+const router = useRouter();
+const [sea, setSea] = useState("");
   const handlePress =  () => {
+    setSea(http);
     router.push({
-      pathname: "/product/Products", 
-      params: {
-        name:name , 
-        price: price,
-        description: description,
-        image: iconSrc,  
-      },
+      pathname: "/product/Products",
+      params: { http: http, name: name, description: description, price: price },
     });
+    
   };
   return (
     // <View style={styles.item}>

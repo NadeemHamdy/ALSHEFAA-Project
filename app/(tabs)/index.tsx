@@ -52,7 +52,7 @@ export default function HomeScreen() {
         </ThemedText>
        
       </ThemedView>
-       <Link href = "/profile">test</Link>
+      
     </ParallaxScrollView>
   );
 }

@@ -14,6 +14,7 @@ import rft from "@/assets/images/rft.png";
 import pmb from "@/assets/images/pmb.png"; 
 import splashIcon from "@/assets/images/splash-icon.png"; 
 import tft from "@/assets/images/tft.png"; 
+import login from "@/assets/images/login.png";
 
 export const images = {
   adaptiveIcon,
@@ -32,4 +33,5 @@ export const images = {
   splashIcon,
   tft,
   logo,
+  login,
 };

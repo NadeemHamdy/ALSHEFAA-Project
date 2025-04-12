@@ -69,20 +69,14 @@ export default function TabLayout() {
         options={{
           title: 'Login',
           tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} icon={icons.home} />
+            <TabIcon focused={focused} icon={icons.login} />
           ),
+          // tabBarShowLabel: false,
+          headerShown: false,
         }}
       />
      
-       <Tabs.Screen
-        name="profile"
-        options={{
-          title: 'Profile',
-          tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} icon={icons.person } />
-          ),
-        }}
-      />
+      
     </Tabs>
   );
 }
