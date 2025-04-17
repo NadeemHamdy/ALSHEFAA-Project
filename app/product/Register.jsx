@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, TextInput, Pressable, ScrollView, Image } from "react-native";
+import { StyleSheet, Text, View, TextInput, Pressable, ScrollView, Image,SafeAreaView  } from "react-native";
 import {  createUserWithEmailAndPassword } from "firebase/auth";
 import auth from '../firebase';
 import { Link } from "expo-router";
@@ -10,9 +10,9 @@ import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { icons } from '@/constants/icons';
 
 export default function Register() {
-  const [Email, setEmail] = useState('');
-  const [Password, setPassword] = useState('');
-  const [image, setImage] = useState(null);
+ const [Email, setEmail] = useState('');
+ const [Password, setPassword] = useState('');
+ const [image, setImage] = useState(null);
 
   const pickImage = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -71,38 +71,38 @@ export default function Register() {
     }
   };
 
-  return (
-    <ScrollView contentContainerStyle={styles.container2}>
-      <View style={styles.container}>
-        
-        <StatusBar style="auto" />
+  return (
+   <SafeAreaView style={styles.container2}>
+     <ScrollView contentContainerStyle={styles.container}>
 
-        <Pressable onPress={pickImage} style={styles.imagePickerContainer}>
-          {image ? (
-            <Image source={{ uri: image }} style={styles.profileImage} />
-          ) : (
-            <View style={styles.placeholderImage}>
+        <StatusBar style="auto" />
+
+           <Pressable onPress={pickImage} style={styles.imagePickerContainer}>
+            {image ? (
+            <Image source={{ uri: image }} style={styles.profileImage} />
+           ) : (
+           <View style={styles.placeholderImage}>
             <Image style={styles.placeholderImage} source={icons.login}></Image>
-            </View>
-          )}
-        </Pressable>
+           </View>
+            )}
+         </Pressable>
 <Text style={styles.title}>Create a new account</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Email"
-          value={Email}
-          onChangeText={setEmail}
-          keyboardType="email-address"
-          autoCapitalize="none"
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Password"
-          value={Password}
-          onChangeText={setPassword}
-          secureTextEntry
-        />
-<Pressable 
+        <TextInput
+         style={styles.input}
+         placeholder="Email"
+         value={Email}
+         onChangeText={setEmail}
+         keyboardType="email-address"
+         autoCapitalize="none"
+         />
+        <TextInput
+         style={styles.input}
+         placeholder="Password"
+         value={Password}
+         onChangeText={setPassword}
+         secureTextEntry
+       />
+         <Pressable 
                onPress={() => {
                   handleRegister()
                   
@@ -126,33 +126,32 @@ export default function Register() {
                  <Text style={styles.text}>{pressed ? "Pressed!" : "Creat"}</Text>
                )}
              </Pressable>
-        <Link href="../" style={{ marginTop: 20,width: "100%", }}>
-          <Text style={styles.label}>Already have an account? 
-          Login</Text>
-        </Link>
-      </View>
-    </ScrollView>
-  );
+        <Link href="../" style={{ marginTop: 20,width: "100%", }}>
+       <Text style={styles.label}>Already have an account? Login</Text>
+       </Link>
+     </ScrollView>
+    </SafeAreaView>
+ );
 }
 
 const styles = StyleSheet.create({
   container2: {
     flex: 1,
-    backgroundColor: 'rgb(233, 230, 230)',
+    backgroundColor: 'rgb(212, 211, 211)',
     alignItems: "center",
     justifyContent: "center",
     padding: 20,
+   paddingTop: "50%",
+
   },
   container: {
-    backgroundColor: "#ffff",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingHorizontal: 25,
-    paddingVertical: 20,
-    borderRadius: "5%",
-    width: "90%",
-    maxHeight: "80%",
-    minHeight: "60%",
+  padding: 25,
+  
+  flexDirection: "column",
+  justifyContent: "space-between",
+  backgroundColor: "#ffff",
+  borderRadius: 10,
+ 
   },
   title: {
     fontSize: 24,
@@ -160,6 +159,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 30,
     textAlign: "center",
+     fontFamily: "Roboto",  
   },
   input: {
     width: "100%",
@@ -188,6 +188,7 @@ text: {
     "Roboto",
   fontStyle: "normal",
   fontWeight: "500",
+ 
 
 },
 label: {
@@ -201,16 +202,19 @@ label: {
   textTransform: "uppercase",
   fontFamily: "Roboto",
   fontStyle: "normal",
+
 },
   imagePickerContainer: {
     marginBottom: 20,
     alignItems: 'center',
     justifyContent: 'center',
+   
   },
   profileImage: {
     width: 100,
     height: 100,
     borderRadius: 50,
+    
   },
   placeholderImage: {
     width: 100,
@@ -219,9 +223,11 @@ label: {
     backgroundColor: 'lightgray',
     alignItems: 'center',
     justifyContent: 'center',
+   
   },
   placeholderText: {
     fontSize: 16,
     fontWeight: 'bold',
+   
   },
 });

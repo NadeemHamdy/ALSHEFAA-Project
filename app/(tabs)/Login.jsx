@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, TextInput, Button, Pressable, Image } from "react-native";
+import { StyleSheet, Text, View, TextInput, Button, Pressable, Image,SafeAreaView,ScrollView } from "react-native";
 import auth from '../firebase';
 import {useState} from 'react';
 import {  signInWithEmailAndPassword } from "firebase/auth";
@@ -83,10 +83,10 @@ export default function Login() {
 
   return (
 
-     <View style={styles.container2}>
-      <View style={styles.container}>
-      //<Image source={require("../Assets/images/images.jpeg")} style={styles.image} />
-      <Text style={styles.title}>log in to Alshefaa</Text>
+       <SafeAreaView style={styles.container2}>
+         <ScrollView contentContainerStyle={styles.container}>
+      <Image source={require("../Assets/images/images.jpeg")} style={styles.image} />
+      <Text style={styles.title}>Login to Alshefaa</Text>
       <StatusBar style="auto" />
 
       <TextInput style={styles.input} placeholder="Email" value={Email} onChangeText={setEmail}/>
@@ -118,32 +118,36 @@ export default function Login() {
       <Link href="../product/Register" style={{  marginTop: 20, }}>
         <Text style={styles.label}>Create a new account</Text>
       </Link>
-      </View>
-      </View>
+       
+           </ScrollView >
+            </SafeAreaView>
+      
       
    
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-
-    flex: 1,
-    backgroundColor: "#ffff",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingHorizontal: 25,
-    borderRadius: "5%",
-    width :"90%",
-    maxHeight :"60%",
-  },
   container2: {
-    flex: 1,
-    backgroundColor: 'rgb(233, 230, 230)',
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 20,
-  },
+        flex: 1,
+        backgroundColor: 'rgb(212, 211, 211)',
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 20,
+       paddingTop: "50%",
+    
+      },
+      container: {
+      padding: 25,
+      alignItems: "center",
+      flexDirection: "column",
+      justifyContent: "space-between",
+      backgroundColor: "#ffff",
+      borderRadius: 10,
+      minWidth : "90%",
+      
+     
+      },
   image: {
     width: "100%", 
     height: 120,

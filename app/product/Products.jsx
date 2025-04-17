@@ -6,14 +6,14 @@ import { useLocalSearchParams } from "expo-router";
 import { ThemedText } from '@/components/ThemedText';
 import PressableVsButton from '@/components/PressableVsButton';
 const Products = () => {
-  const  { name ,price,  description,image ,isLogin  } = useLocalSearchParams();
+  const  { iconSrc,http, name ,price,  description ,isLogin  } = useLocalSearchParams();
   
   return (
    <ParallaxScrollView
         headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
         headerImage={
           <Image
-            source={image}
+            source={iconSrc}
             style={styles.reactLogo}
           />
         }>

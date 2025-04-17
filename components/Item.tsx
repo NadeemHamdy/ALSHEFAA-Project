@@ -8,7 +8,7 @@ const [sea, setSea] = useState("");
     setSea(http);
     router.push({
       pathname: "/product/Products",
-      params: { http: http, name: name, description: description, price: price },
+      params: { iconSrc:iconSrc,http: http, name: name, description: description, price: price },
     });
     
   };
