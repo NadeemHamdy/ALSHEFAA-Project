@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, TextInput, Pressable, ScrollView, Image,SafeAreaView  } from "react-native";
 import {  createUserWithEmailAndPassword } from "firebase/auth";
 import auth from '../firebase';
-import { Link } from "expo-router";
+import { Link ,useRouter} from "expo-router";
 import * as ImagePicker from 'expo-image-picker';
 import { storage } from '../firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { icons } from '@/constants/icons';
+import Profile from "@/components/Profile";
+
 
 export default function Register() {
  const [Email, setEmail] = useState('');
@@ -70,7 +72,20 @@ export default function Register() {
       console.log("Registration error:", errorMessage);
     }
   };
-
+ const [login,setLogin]=useState(false)
+   const router = useRouter()
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setLogin(!!user);
+    });
+    return () => unsubscribe();
+  }, []);
+  if(login){
+       
+    return(
+      router.push("/"),
+     <Profile></Profile>
+    )}
   return (
    <SafeAreaView style={styles.container2}>
      <ScrollView contentContainerStyle={styles.container}>
@@ -123,7 +138,7 @@ export default function Register() {
                ]}
              >
                {({ pressed }) => (
-                 <Text style={styles.text}>{pressed ? "Pressed!" : "Creat"}</Text>
+                 <Text style={styles.text}>{pressed ? "Pressed!" : "Create"}</Text>
                )}
              </Pressable>
         <Link href="../" style={{ marginTop: 20,width: "100%", }}>

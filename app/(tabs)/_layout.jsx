@@ -1,48 +1,52 @@
 import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
-import { HapticTab } from '@/components/HapticTab';
+import React, { useState, useEffect, useCallback } from 'react';
 import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
-import { icons } from '@/constants/icons';
 import TabIcon from '@/components/ui/TabIcon';
-import { useLocalSearchParams } from "expo-router";
+import { icons } from '@/constants/icons';
+import  auth  from '../firebase';
+
+
 export default function TabLayout() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setIsLoggedIn(!!user);
+    });
+    return () => unsubscribe();
+  }, []);
 
-  const colorScheme = useColorScheme();
-const { isLogin } = useLocalSearchParams();
-const log = ()=> {
-return isLogin ? "profile" : "Login"
-}
+  const getProfileTabOptions = useCallback(() => {
+    return {
+      title: isLoggedIn ? 'Profile' : 'Login',
+      tabBarIcon: ({ focused }) => (
+        <TabIcon focused={focused} icon={ icons.login} />
+      ),
+      headerShown: false,
+    };
+  }, [isLoggedIn]);
+
   return (
-
     <Tabs
-    screenOptions={{
-      // tabBarShowLabel: false,
-      
-      tabBarItemStyle: {
-        width: "100%",
-        height: "100%",
-        justifyContent: "center",
-        alignItems: "center",
-      },
-      tabBarStyle: {
-        backgroundColor:'rgb(252, 226, 250)',
-        justifyContent: "center",
-        alignItems: "center",
-        height: "9%",
-        position: "absolute",
-        overflow: "hidden",
-        borderWidth: 1,
-        borderColor: "#000",
-        
-     
-      },
-    }}
-  >
+      screenOptions={{
+        tabBarItemStyle: {
+          width: "100%",
+          height: "100%",
+          justifyContent: "center",
+          alignItems: "center",
+        },
+        tabBarStyle: {
+          backgroundColor: 'rgb(252, 226, 250)',
+          justifyContent: "center",
+          alignItems: "center",
+          height: "9%",
+          position: "absolute",
+          overflow: "hidden",
+          borderWidth: 1,
+          borderColor: "#000",
+        },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
@@ -52,7 +56,7 @@ return isLogin ? "profile" : "Login"
           ),
         }}
       />
-       <Tabs.Screen
+      <Tabs.Screen
         name="search"
         options={{
           title: "Search",
@@ -69,21 +73,10 @@ return isLogin ? "profile" : "Login"
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
         }}
       />
-
-
-<Tabs.Screen
+      <Tabs.Screen
         name="Login"
-        options={{
-          title: log(),
-          tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} icon={icons.login} />
-          ),
-          // tabBarShowLabel: false,
-          headerShown: false,
-        }}
+        options={getProfileTabOptions}
       />
-     
-      
     </Tabs>
   );
 }
