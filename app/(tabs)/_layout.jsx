@@ -4,6 +4,7 @@ import { IconSymbol } from '@/components/ui/IconSymbol';
 import TabIcon from '@/components/ui/TabIcon';
 import { icons } from '@/constants/icons';
 import  {auth}  from '../firebase';
+import Menu from '@/components/menu';
 
 
 export default function TabLayout() {
@@ -18,7 +19,6 @@ export default function TabLayout() {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      // ...your logic...
     });
     return () => unsubscribe();
   }, []);
@@ -34,6 +34,8 @@ export default function TabLayout() {
   }, [isLoggedIn]);
 
   return (
+    <>
+    <Menu></Menu>
     <Tabs
       screenOptions={{
         tabBarItemStyle: {
@@ -85,5 +87,6 @@ export default function TabLayout() {
         options={getProfileTabOptions}
       />
     </Tabs>
+    </>
   );
 }
