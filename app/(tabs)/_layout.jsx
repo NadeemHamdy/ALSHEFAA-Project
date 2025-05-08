@@ -9,12 +9,12 @@ import  auth  from '../firebase';
 export default function TabLayout() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setIsLoggedIn(!!user);
-    });
-    return () => unsubscribe();
-  }, []);
+  // useEffect(() => {
+  //   const unsubscribe = auth.onAuthStateChanged((user) => {
+  //     setIsLoggedIn(!!user);
+  //   });
+  //   return () => unsubscribe();
+  // }, []);
 
   const getProfileTabOptions = useCallback(() => {
     return {

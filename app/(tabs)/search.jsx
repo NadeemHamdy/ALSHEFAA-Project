@@ -1,8 +1,11 @@
-import { StyleSheet, Text, View, SafeAreaView, ScrollView } from 'react-native'
-import React, { useState } from 'react'
-import SimpleScrollView from '@/components/SimpleScrollView'
-import { images } from '@/constants/images'
-import SearchBar from '@/components/SearchBar'
+import { StyleSheet, Text, View, SafeAreaView, ScrollView } from 'react-native';
+import React, { useState } from 'react';
+import SimpleScrollView from '@/components/SimpleScrollView';
+import { images } from '@/constants/images';
+import SearchBar from '@/components/SearchBar';
+// import { onAuthStateChanged } from "firebase/auth";
+import { db } from '../firebase'; // firebase.js
+import { collection } from 'firebase/firestore';
 
 const Search = () => {
   const Items = [
@@ -78,7 +81,7 @@ const Search = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.SearchBar}>
         <SearchBar
-          placeholder=" Search for a Test"
+          placeholder="Search for a Test"
           value={searchQuery}
           onChangeText={handleSearch}
         />

@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, TextInput, Button, Pressable, Image,SafeAreaView,ScrollView } from "react-native";
-import auth from '../firebase';
+import { auth } from '../firebase';
+
 import {useState , useEffect} from 'react';
 import {  signInWithEmailAndPassword } from "firebase/auth";
 import {Link } from "expo-router";
