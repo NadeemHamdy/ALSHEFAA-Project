@@ -2,7 +2,7 @@ import React, { useState,useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, TextInput, Pressable, ScrollView, Image,SafeAreaView  } from "react-native";
 import {  createUserWithEmailAndPassword } from "firebase/auth";
-import auth from '../firebase';
+import {auth} from '../firebase';
 import { Link ,useRouter} from "expo-router";
 import * as ImagePicker from 'expo-image-picker';
 import { storage } from '../firebase';

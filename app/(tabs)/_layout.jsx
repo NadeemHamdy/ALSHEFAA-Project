@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import TabIcon from '@/components/ui/TabIcon';
 import { icons } from '@/constants/icons';
-import  auth  from '../firebase';
+import  {auth}  from '../firebase';
 
 
 export default function TabLayout() {
@@ -12,6 +12,13 @@ export default function TabLayout() {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setIsLoggedIn(!!user);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      // ...your logic...
     });
     return () => unsubscribe();
   }, []);
