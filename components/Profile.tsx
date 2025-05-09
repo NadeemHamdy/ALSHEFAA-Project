@@ -14,7 +14,7 @@ import {
 import * as ImagePicker from 'expo-image-picker';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { auth, db, storage } from '../app/firebase';
+import { auth, db,  } from '../app/firebase';
 
 const Profile = () => {
   const user = auth.currentUser;
@@ -37,7 +37,7 @@ const Profile = () => {
         setBio(data.bio || '');
         setImage(data.photoURL || null);
       }
-    };
+    };              
 
     fetchData();
   }, []);
