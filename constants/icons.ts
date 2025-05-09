@@ -7,6 +7,7 @@ import star from "@/assets/icons/star.png";
 import play from "@/assets/icons/play.png";
 import arrow from "@/assets/icons/arrow.png";
 import login from "@/assets/images/login.png";
+import cart from "@/assets/icons/cart.png";
 
 
 export const icons = {
@@ -19,4 +20,5 @@ export const icons = {
   play,
   arrow,
   login,
+  cart,
 };

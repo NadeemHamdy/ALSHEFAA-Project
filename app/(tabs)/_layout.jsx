@@ -5,6 +5,7 @@ import TabIcon from '@/components/ui/TabIcon';
 import { icons } from '@/constants/icons';
 import  {auth}  from '../firebase';
 import Menu from '@/components/menu';
+import Colors from "../../constants/Colors2"
 
 
 export default function TabLayout() {
@@ -38,22 +39,9 @@ export default function TabLayout() {
     <Menu></Menu>
     <Tabs
       screenOptions={{
-        tabBarItemStyle: {
-          width: "100%",
-          height: "100%",
-          justifyContent: "center",
-          alignItems: "center",
-        },
-        tabBarStyle: {
-          backgroundColor: 'rgb(252, 226, 250)',
-          justifyContent: "center",
-          alignItems: "center",
-          height: "9%",
-          position: "absolute",
-          overflow: "hidden",
-          borderWidth: 1,
-          borderColor: "#000",
-        },
+        tabBarActiveTintColor: Colors.primary,
+        tabBarInactiveTintColor: Colors.textLight,
+        headerShown: true,
       }}
     >
       <Tabs.Screen
@@ -76,7 +64,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="about"
         options={{
           title: 'Explore',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
