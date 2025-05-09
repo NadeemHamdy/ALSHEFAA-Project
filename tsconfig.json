@@ -17,5 +17,5 @@
     "app/_layout.tsx",
     "images.d.ts",
     "types/**/*.d.ts"
-, "app/(tabs)/index.tsx", "components/SimpleFlatList.tsx", "components/Item.tsx", "app/product/Products.jsx", "app/(pationt)/search.jsx", "app/(tabs)/_layout.jsx", "app/product/_layout.jsx", "components/SearchBar.jsx", "app/(tabs)/Login.jsx"  ]
+, "app/(tabs)/index.tsx", "components/SimpleFlatList.tsx", "components/Item.tsx", "app/product/Products.jsx", "app/(pationt)/search.jsx", "app/(tabs)/_layout.jsx", "app/product/_layout.jsx", "components/SearchBar.jsx", "app/product/Login.jsx"  ]
 }

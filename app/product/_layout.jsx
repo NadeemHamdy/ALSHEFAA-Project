@@ -8,7 +8,7 @@ const ProductLayOut = () => {
   return (
    <Stack>
       <Stack.Screen name="Products" options={{ title:name,  }} />
-      <Stack.Screen name="Register"  options={{ headerShown: false , }} />
+      <Stack.Screen name="Register"  options={{ headerShown: true , }} />
      
    </Stack>
   )

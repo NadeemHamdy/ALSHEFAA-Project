@@ -42,7 +42,7 @@ export default function Login() {
       }
 
     } catch (error) {
-      console.error("Login Error:", error.message);
+    
 
       let errorMessage = "An error occurred during login.";
       if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {

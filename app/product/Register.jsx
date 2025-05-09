@@ -56,10 +56,10 @@ export default function Register() {
       await setDoc(doc(db, "user", user.uid), userData);
 
       Alert.alert("Success", "Account created successfully! Please log in.");
-      router.replace("/auth/Login");
+      router.replace("../product/Login");
 
     } catch (error) {
-      console.error("Registration Error:", error.message);
+     
 
       let errorMessage = "An error occurred during registration.";
       if (error.code === 'auth/email-already-in-use') {
@@ -152,7 +152,7 @@ export default function Register() {
 
         <View style={styles.footer}>
           <Text style={styles.footerText}>Already have an account? </Text>
-          <TouchableOpacity onPress={() => router.push("../(tabs)/Login")}>
+          <TouchableOpacity onPress={() => router.push("../product/Login")}>
             <Text style={styles.loginText}>Login</Text>
           </TouchableOpacity>
         </View>

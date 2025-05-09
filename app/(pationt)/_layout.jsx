@@ -17,7 +17,7 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: Colors.primary,
         tabBarInactiveTintColor: Colors.textLight,
-        headerShown: false,
+        headerShown: true,
       }}
     >
       {/* Tab for indexp.tsx */}
