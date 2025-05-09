@@ -71,6 +71,6 @@ items: {
   borderWidth: 1,
   flexDirection: "column",
   justifyContent: "space-between",
-  
+  paddingBottom: 100,
 },
 });

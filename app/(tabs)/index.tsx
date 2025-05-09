@@ -1,77 +1,235 @@
-import { Image, StyleSheet, Platform } from 'react-native';
-import { Link } from 'expo-router';
-import { HelloWave } from '@/components/HelloWave';
+import { Image, StyleSheet, Platform, View, TouchableOpacity } from 'react-native';
+import { Link, useRouter } from 'expo-router';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import Test from '@/app/(tabs)/search';
 import { images } from '@/constants/images';
+
+interface Analysis {
+  name: string;
+  description: string;
+  icon: any;
+  http: string;
+  price: number;
+}
+
 export default function HomeScreen() {
+  const router = useRouter();
+
+  const latestAnalyses: Analysis[] = [
+    {
+      name: "Complete Blood Count (CBC)",
+      description: "Measures the number and types of cells in your blood.",
+      icon: images.cpc,
+      http: "/product/Products",
+      price: 50,
+    },
+    {
+      name: "Lipid Panel",
+      description: "Checks cholesterol and triglyceride levels.",
+      icon: images.lp,
+      http: "/product/LipidPanel",
+      price: 75,
+    },
+    {
+      name: "Basic Metabolic Panel",
+      description: "Measures glucose, electrolytes, and kidney function.",
+      icon: images.pmb,
+      http: "/product/BMP",
+      price: 60,
+    },
+  ];
+
+  const handleAnalysisPress = (analysis: Analysis) => {
+    router.push({
+      pathname: "/product/Products",
+      params: { 
+        iconSrc: analysis.icon,
+        http: analysis.http,
+        name: analysis.name,
+        description: analysis.description,
+        price: analysis.price
+      },
+    });
+  };
+
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
+      headerBackgroundColor={{ light: '#A1CEDC', dark: '#A1CEDC' }}
       headerImage={
         <Image
-          source={images.logo}
-          style={styles.reactLogo}
+          source={images.lab}
+          style={styles.headerImage}
         />
       }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
+      <ThemedView style={styles.container}>
+        <ThemedView style={styles.headerContainer}>
+          <ThemedText type="title" style={styles.mainTitle}>Welcome to Alshefaa</ThemedText>
+          <ThemedText type="subtitle" style={styles.subtitle}>Your Health, Our Priority</ThemedText>
+        </ThemedView>
+
+        <ThemedView style={styles.card}>
+          <ThemedText type="subtitle" style={styles.cardTitle}>Get Started</ThemedText>
+          <ThemedText style={styles.cardText}>
+            Begin your journey to better health with our comprehensive medical services.
+          </ThemedText>
+        </ThemedView>
+
+        <ThemedView style={styles.latestAnalysesContainer}>
+          <ThemedText type="subtitle" style={styles.sectionTitle}>Latest Analyses</ThemedText>
+          {latestAnalyses.map((analysis, index) => (
+            <TouchableOpacity 
+              key={index}
+              style={styles.analysisItem}
+              onPress={() => handleAnalysisPress(analysis)}
+            >
+              <Image source={analysis.icon} style={styles.analysisIcon} />
+              <ThemedView style={styles.analysisContent}>
+                <ThemedText style={styles.analysisName}>{analysis.name}</ThemedText>
+                <ThemedText style={styles.analysisDescription}>{analysis.description}</ThemedText>
+              </ThemedView>
+            </TouchableOpacity>
+          ))}
+          <TouchableOpacity 
+            style={styles.viewMoreButton}
+            onPress={() => router.push('/search')}
+          >
+            <ThemedText style={styles.viewMoreText}>View More Analyses</ThemedText>
+          </TouchableOpacity>
+        </ThemedView>
+
+        <ThemedView style={styles.card}>
+          <ThemedText type="subtitle" style={styles.cardTitle}>Our Services</ThemedText>
+          <ThemedText style={styles.cardText}>
+            Explore our wide range of medical services and specialized treatments.
+          </ThemedText>
+        </ThemedView>
+
+        <ThemedView style={styles.card}>
+          <ThemedText type="subtitle" style={styles.cardTitle}>Expert Care</ThemedText>
+          <ThemedText style={styles.cardText}>
+            Trust in our team of experienced healthcare professionals.
+          </ThemedText>
+        </ThemedView>
       </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-       
-      </ThemedView>
-      
     </ParallaxScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    flex: 1,
+    padding: 16,
+    paddingBottom: 32,
   },
-  stepContainer: {
-    gap: 8,
+  headerContainer: {
+    alignItems: 'center',
+    marginBottom: 24,
+    paddingTop: 16,
+  },
+  mainTitle: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    marginBottom: 8,
+    textAlign: 'center',
+  },
+  subtitle: {
+    fontSize: 18,
+    marginBottom: 16,
+    textAlign: 'center',
+    opacity: 0.8,
+  },
+  headerImage: {
+    height: '100%',
+    width: '100%',
+    position: 'absolute',
+    bottom: 0,
+    resizeMode: 'cover',
+  },
+  card: {
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 16,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  cardTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
     marginBottom: 8,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  cardText: {
+    fontSize: 16,
+    lineHeight: 24,
+    opacity: 0.8,
+  },
+  latestAnalysesContainer: {
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 16,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 16,
+    color: '#A1CEDC',
+  },
+  analysisItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+    backgroundColor: 'rgba(161, 206, 220, 0.1)',
+    borderRadius: 8,
+    padding: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(161, 206, 220, 0.3)',
+  },
+  analysisIcon: {
+    width: 50,
+    height: 50,
+    borderRadius: 8,
+    marginRight: 12,
+  },
+  analysisContent: {
+    flex: 1,
+  },
+  analysisName: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 4,
+    color: '#A1CEDC',
+  },
+  analysisDescription: {
+    fontSize: 14,
+    color: '#A1CEDC',
+    opacity: 0.8,
+  },
+  viewMoreButton: {
+    backgroundColor: '#A1CEDC',
+    padding: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+    marginTop: 8,
+  },
+  viewMoreText: {
+    color: '#000',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
