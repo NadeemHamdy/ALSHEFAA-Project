@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Pressable, Image, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Pressable, Image, Dimensions, Alert } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { useLocalSearchParams, useRouter } from "expo-router";
@@ -7,6 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getAuth } from 'firebase/auth';
 import { ThemedView } from '@/components/ThemedView';
 import { ThemedText } from '@/components/ThemedText';
+import Review from "@/components/Review";
 
 const { width } = Dimensions.get('window');
 
@@ -15,38 +16,50 @@ const Products = () => {
   const imageSource = images[icon];
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
+  const auth = getAuth();
 
   useEffect(() => {
     const user = getAuth().currentUser;
-    setIsLoggedIn(!!user);
+    if (user) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
   }, []);
 
   const addToCart = async () => {
     if (!isLoggedIn) {
-      alert("Please log in to add items to the cart!");
+      Alert.alert(
+        "Login Required",
+        "Please login to add items to cart",
+        [
+          {
+            text: "Cancel",
+            style: "cancel"
+          },
+          {
+            text: "Login",
+            onPress: () => router.push("/product/Login")
+          }
+        ]
+      );
       return;
     }
 
     try {
-      let cart = await AsyncStorage.getItem('cart');
-      cart = cart ? JSON.parse(cart) : [];
-
-      const index = cart.findIndex(item => item.name === name);
-      if (index !== -1) {
-        cart[index].quantity += 1;
-      } else {
-        cart.push({ name, price, description, icon, quantity: 1 });
-      }
-
-      await AsyncStorage.setItem('cart', JSON.stringify(cart));
-      alert("✅ Added to Cart");
-    } catch (e) {
-      console.error('Error adding to cart:', e);
+      const existingCart = await AsyncStorage.getItem("cart");
+      const cart = existingCart ? JSON.parse(existingCart) : [];
+      cart.push({ name, price, description, icon, quantity: 1 });
+      await AsyncStorage.setItem("cart", JSON.stringify(cart));
+      Alert.alert("Success", "Item added to cart");
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+      Alert.alert("Error", "Failed to add item to cart");
     }
   };
 
   const goToCart = () => {
-    router.push('/cart');
+    router.push("/cart");
   };
 
   return (
@@ -93,6 +106,8 @@ const Products = () => {
             <ThemedText style={styles.buttonText}>View Cart</ThemedText>
           </Pressable>
         </ThemedView>
+
+        <Review productName={name} />
       </ThemedView>
     </ParallaxScrollView>
   );
