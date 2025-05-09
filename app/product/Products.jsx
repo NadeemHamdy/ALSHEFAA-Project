@@ -18,11 +18,7 @@ const Products = () => {
 
   useEffect(() => {
     const user = getAuth().currentUser;
-    if (user) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
+    setIsLoggedIn(!!user);
   }, []);
 
   const addToCart = async () => {
@@ -66,7 +62,7 @@ const Products = () => {
     >
       <ThemedView style={styles.container}>
         <ThemedText type="title" style={styles.title}>{name}</ThemedText>
-        
+
         <ThemedView style={styles.priceContainer}>
           <ThemedText type="subtitle" style={styles.price}>${price}</ThemedText>
         </ThemedView>
@@ -102,116 +98,71 @@ const Products = () => {
   );
 };
 
+export default Products;
+
 const styles = StyleSheet.create({
+  imageContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  imageWrapper: {
+    borderRadius: 15,
+    overflow: 'hidden',
+  },
+  productImage: {
+    height: 200,
+    width: width - 40,
+    resizeMode: 'contain',
+  },
   container: {
     flex: 1,
     padding: 20,
   },
-  imageContainer: {
-    width: '100%',
-    height: 300,
-    backgroundColor: '#A1CEDC',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderBottomLeftRadius: 30,
-    borderBottomRightRadius: 30,
-  },
-  imageWrapper: {
-    width: width * 0.9,
-    height: 250,
-    backgroundColor: '#fff',
-    borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 4.65,
-    elevation: 8,
-    padding: 10,
-  },
-  productImage: {
-    width: '100%',
-    height: '100%',
-    resizeMode: 'contain',
-  },
   title: {
-    fontSize: 28,
+    fontSize: 30,
     fontWeight: 'bold',
-    textAlign: 'center',
-    marginTop: 20,
     marginBottom: 10,
-    color: '#1D3D47',
   },
   priceContainer: {
-    backgroundColor: '#A1CEDC',
-    padding: 15,
-    borderRadius: 15,
-    marginVertical: 15,
-    alignItems: 'center',
+    marginBottom: 20,
   },
   price: {
-    fontSize: 24,
-    fontWeight: 'bold',
+    fontSize: 25,
     color: '#1D3D47',
   },
   descriptionContainer: {
-    backgroundColor: 'rgba(161, 206, 220, 0.1)',
-    padding: 20,
-    borderRadius: 15,
-    marginVertical: 15,
+    marginBottom: 20,
   },
   descriptionTitle: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 10,
-    color: '#1D3D47',
   },
   description: {
     fontSize: 16,
-    lineHeight: 24,
-    color: '#1D3D47',
+    color: '#333',
   },
   buttonContainer: {
     marginTop: 20,
-    gap: 15,
+    alignItems: 'center',
   },
   addButton: {
     backgroundColor: '#1D3D47',
     padding: 15,
-    borderRadius: 12,
+    borderRadius: 10,
+    width: '100%',
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
   },
   viewCartButton: {
+    marginTop: 10,
     backgroundColor: '#A1CEDC',
     padding: 15,
-    borderRadius: 12,
+    borderRadius: 10,
+    width: '100%',
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
   },
   buttonText: {
     color: '#fff',
     fontSize: 18,
-    fontWeight: 'bold',
   },
 });
-
-export default Products;
