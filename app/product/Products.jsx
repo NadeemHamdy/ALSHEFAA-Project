@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Pressable, Image, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Pressable, Image, Dimensions, Alert } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { useLocalSearchParams, useRouter } from "expo-router";
@@ -7,6 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getAuth } from 'firebase/auth';
 import { ThemedView } from '@/components/ThemedView';
 import { ThemedText } from '@/components/ThemedText';
+import Review from "@/components/Review";
 
 const { width } = Dimensions.get('window');
 
@@ -15,6 +16,7 @@ const Products = () => {
   const imageSource = images[icon];
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
+  const auth = getAuth();
 
   useEffect(() => {
     const user = getAuth().currentUser;
@@ -27,30 +29,37 @@ const Products = () => {
 
   const addToCart = async () => {
     if (!isLoggedIn) {
-      alert("Please log in to add items to the cart!");
+      Alert.alert(
+        "Login Required",
+        "Please login to add items to cart",
+        [
+          {
+            text: "Cancel",
+            style: "cancel"
+          },
+          {
+            text: "Login",
+            onPress: () => router.push("/product/Login")
+          }
+        ]
+      );
       return;
     }
 
     try {
-      let cart = await AsyncStorage.getItem('cart');
-      cart = cart ? JSON.parse(cart) : [];
-
-      const index = cart.findIndex(item => item.name === name);
-      if (index !== -1) {
-        cart[index].quantity += 1;
-      } else {
-        cart.push({ name, price, description, icon, quantity: 1 });
-      }
-
-      await AsyncStorage.setItem('cart', JSON.stringify(cart));
-      alert("✅ Added to Cart");
-    } catch (e) {
-      console.error('Error adding to cart:', e);
+      const existingCart = await AsyncStorage.getItem("cart");
+      const cart = existingCart ? JSON.parse(existingCart) : [];
+      cart.push({ name, price, description, icon, quantity: 1 });
+      await AsyncStorage.setItem("cart", JSON.stringify(cart));
+      Alert.alert("Success", "Item added to cart");
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+      Alert.alert("Error", "Failed to add item to cart");
     }
   };
 
   const goToCart = () => {
-    router.push('/cart');
+    router.push("/cart");
   };
 
   return (
@@ -66,7 +75,7 @@ const Products = () => {
     >
       <ThemedView style={styles.container}>
         <ThemedText type="title" style={styles.title}>{name}</ThemedText>
-        
+
         <ThemedView style={styles.priceContainer}>
           <ThemedText type="subtitle" style={styles.price}>${price}</ThemedText>
         </ThemedView>
@@ -97,121 +106,78 @@ const Products = () => {
             <ThemedText style={styles.buttonText}>View Cart</ThemedText>
           </Pressable>
         </ThemedView>
+
+        <Review productName={name} />
       </ThemedView>
     </ParallaxScrollView>
   );
 };
 
+export default Products;
+
 const styles = StyleSheet.create({
+  imageContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  imageWrapper: {
+    borderRadius: 15,
+    overflow: 'hidden',
+  },
+  productImage: {
+    height: 200,
+    width: width - 40,
+    resizeMode: 'contain',
+  },
   container: {
     flex: 1,
     padding: 20,
   },
-  imageContainer: {
-    width: '100%',
-    height: 300,
-    backgroundColor: '#A1CEDC',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderBottomLeftRadius: 30,
-    borderBottomRightRadius: 30,
-  },
-  imageWrapper: {
-    width: width * 0.9,
-    height: 250,
-    backgroundColor: '#fff',
-    borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 4.65,
-    elevation: 8,
-    padding: 10,
-  },
-  productImage: {
-    width: '100%',
-    height: '100%',
-    resizeMode: 'contain',
-  },
   title: {
-    fontSize: 28,
+    fontSize: 30,
     fontWeight: 'bold',
-    textAlign: 'center',
-    marginTop: 20,
     marginBottom: 10,
-    color: '#1D3D47',
   },
   priceContainer: {
-    backgroundColor: '#A1CEDC',
-    padding: 15,
-    borderRadius: 15,
-    marginVertical: 15,
-    alignItems: 'center',
+    marginBottom: 20,
   },
   price: {
-    fontSize: 24,
-    fontWeight: 'bold',
+    fontSize: 25,
     color: '#1D3D47',
   },
   descriptionContainer: {
-    backgroundColor: 'rgba(161, 206, 220, 0.1)',
-    padding: 20,
-    borderRadius: 15,
-    marginVertical: 15,
+    marginBottom: 20,
   },
   descriptionTitle: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 10,
-    color: '#1D3D47',
   },
   description: {
     fontSize: 16,
-    lineHeight: 24,
-    color: '#1D3D47',
+    color: '#333',
   },
   buttonContainer: {
     marginTop: 20,
-    gap: 15,
+    alignItems: 'center',
   },
   addButton: {
     backgroundColor: '#1D3D47',
     padding: 15,
-    borderRadius: 12,
+    borderRadius: 10,
+    width: '100%',
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
   },
   viewCartButton: {
+    marginTop: 10,
     backgroundColor: '#A1CEDC',
     padding: 15,
-    borderRadius: 12,
+    borderRadius: 10,
+    width: '100%',
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
   },
   buttonText: {
     color: '#fff',
     fontSize: 18,
-    fontWeight: 'bold',
   },
 });
-
-export default Products;
