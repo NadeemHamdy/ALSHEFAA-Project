@@ -71,8 +71,8 @@ const AdminPage = () => {
         renderItem={({ item }) => (
           <View style={styles.product}>
             <Text>{item.name} - ${item.price}</Text>
-            <TouchableOpacity onPress={() => handleDeleteProduct(item.id)}>
-              <Text style={styles.delete}>Delete</Text>
+            <TouchableOpacity onPress={() => handleDeleteProduct(item.id)} style={styles.deleteButton}>
+              <Text style={styles.deleteText}>Delete</Text>
             </TouchableOpacity>
           </View>
         )}
@@ -90,5 +90,13 @@ const styles = StyleSheet.create({
   button: { backgroundColor: '#1D3D47', padding: 15, borderRadius: 8, alignItems: 'center' },
   buttonText: { color: '#fff', fontWeight: 'bold' },
   product: { flexDirection: 'row', justifyContent: 'space-between', marginVertical: 5 },
-  delete: { color: 'red', fontWeight: 'bold' },
+  deleteButton: {
+    backgroundColor: '#FF4C4C', // لون أحمر مميز
+    padding: 8,
+    borderRadius: 5,
+  },
+  deleteText: {
+    color: '#fff',
+    fontWeight: 'bold',
+  },
 });
