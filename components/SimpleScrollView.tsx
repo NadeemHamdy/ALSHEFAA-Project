@@ -31,7 +31,7 @@ return (
 
     <ScrollView contentContainerStyle={styles.items}>
       {items.map((e) => (
-        <Item  name={e.name} iconSrc={e.icon} description={e.description} key={e.http} http ={e.http} price={e.price}  />
+        <Item  name={e.name} iconSrc={e.icon} description={e.description} key={e.name} http ={e.http} price={e.price}  />
       ))}
     </ScrollView>
     {/* <ScrollView contentContainerStyle={styles.items}>
