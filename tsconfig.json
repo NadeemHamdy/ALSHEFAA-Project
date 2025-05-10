@@ -1,0 +1,21 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts",
+    "app/_layout.tsx",
+    "images.d.ts",
+    "types/**/*.d.ts"
+, "app/(tabs)/index.tsx", "components/SimpleFlatList.tsx", "components/Item.tsx", "app/product/Products.jsx", "app/(pationt)/search.jsx", "app/(tabs)/_layout.jsx", "app/product/_layout.jsx", "components/SearchBar.jsx", "app/product/Login.jsx"  ]
+}
