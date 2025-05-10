@@ -27,6 +27,15 @@ export default function TabLayout() {
           ),
         }}
       />
+        <Tabs.Screen
+        name="admin"
+        options={{
+          title: 'Admin',
+          tabBarIcon: ({ focused }) => (
+            <TabIcon focused={focused} icon={icons.admin} />
+          ),
+        }}
+      />
        <Tabs.Screen
         name="profile"
         options={{
@@ -34,6 +43,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <FontAwesome name="user-md" size={24} color={color} />,
         }}
       />
+      
     </Tabs>
     </>
   );
